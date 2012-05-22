@@ -82,7 +82,7 @@ class Layla_Admin_Page_Controller extends Layla_Base_Controller
 		}
 
 		// Add success notification
-		Notification::success('Successfully created page');
+		Notification::success('Successfully created page', 1000, false);
 
 		return Redirect::to($this->url.'page');
 	}

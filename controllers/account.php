@@ -132,22 +132,29 @@ class Layla_Admin_Account_Controller extends Layla_Base_Controller
 
 	public function put_edit($id = null)
 	{
+	
 		// Update the Account
 		$response = API::put(array('account', $id), Input::all());
+		
+		
 
 		// Handle response codes other than 200 OK
 		if($response->error())
 		{
+		
 			// Errors were found on our data! Redirect to form with errors and old input
 			if($response->code == 400)
 			{
 				return Redirect::to($this->url.'account/edit/' . $id)
 							 ->with('errors', new Messages($response->get()))
-					   ->with_input('except', array('password'));
+					  		 ->with_input('except', array('password'));
 			}
+			
 
 			return Event::first($response->code);
 		}
+		
+		
 
 		// Add success notification
 		Notification::success('Successfully updated account');
